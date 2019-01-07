@@ -1,0 +1,17 @@
+#初始化[SHIRO_USER]表数据
+insert into `SHIRO_USER` (`UID`, `USERNAME`, `EMAIL`, `PASSWORD`, `CREATE_TIME`, `LAST_LOGIN_TIME`, `STATUS`) values('1','test1','test1@shiro.com','123456','2018-06-16 11:15:33','2018-06-16 11:24:10','1');
+insert into `SHIRO_USER` (`UID`, `USERNAME`, `EMAIL`, `PASSWORD`, `CREATE_TIME`, `LAST_LOGIN_TIME`, `STATUS`) values('15','admin','admin@shiro.com','123456','2018-06-16 11:15:33','2018-06-16 11:24:10','1');
+insert into `SHIRO_USER` (`UID`, `USERNAME`, `EMAIL`, `PASSWORD`, `CREATE_TIME`, `LAST_LOGIN_TIME`, `STATUS`) values('16','test2','test2@shiro.com','123456','2018-10-22 15:24:54','2018-06-16 11:15:33','1');
+insert into `SHIRO_USER` (`UID`, `USERNAME`, `EMAIL`, `PASSWORD`, `CREATE_TIME`, `LAST_LOGIN_TIME`, `STATUS`) values('17','guest','guest@shiro.com','123456','2018-10-22 15:24:54','2018-06-16 11:15:33','1');
+#初始化[SHIRO_USER_ROLE]表数据
+insert into `SHIRO_USER_ROLE` (`URID`, `ROLE_NAME`, `ROLE_TYPE`, `USERNAME`) values('5','admin','01','admin');
+insert into `SHIRO_USER_ROLE` (`URID`, `ROLE_NAME`, `ROLE_TYPE`, `USERNAME`) values('6','test1','02','test1');
+insert into `SHIRO_USER_ROLE` (`URID`, `ROLE_NAME`, `ROLE_TYPE`, `USERNAME`) values('7','test2','03','test2');
+insert into `SHIRO_USER_ROLE` (`URID`, `ROLE_NAME`, `ROLE_TYPE`, `USERNAME`) values('8','guest','04','guest');
+#初始化[SHIRO_ROLE_PERMISSION]表数据
+insert into `SHIRO_ROLE_PERMISSION` (`SRPID`, `URL`, `PERM_NAME`, `ROLE_NAME`) values('21','perm1.htm','perm1','admin');
+insert into `SHIRO_ROLE_PERMISSION` (`SRPID`, `URL`, `PERM_NAME`, `ROLE_NAME`) values('22','guest.htm','guest','guest');
+insert into `SHIRO_ROLE_PERMISSION` (`SRPID`, `URL`, `PERM_NAME`, `ROLE_NAME`) values('23','perm2.htm','perm2','admin');
+insert into `SHIRO_ROLE_PERMISSION` (`SRPID`, `URL`, `PERM_NAME`, `ROLE_NAME`) values('24','admin.htm','admin','admin');
+insert into `SHIRO_ROLE_PERMISSION` (`SRPID`, `URL`, `PERM_NAME`, `ROLE_NAME`) values('25','perm1.htm','perm1','test1');
+insert into `SHIRO_ROLE_PERMISSION` (`SRPID`, `URL`, `PERM_NAME`, `ROLE_NAME`) values('26','perm2.htm','perm2','test2');

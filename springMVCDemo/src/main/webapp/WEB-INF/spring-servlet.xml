@@ -14,7 +14,7 @@
 	<!-- 配置扫描的包 -->
 	<context:component-scan base-package="com.springdemo.*" />
 
-	<!-- 注册HandlerMapper、HandlerAdapter两个映射类 -->
+	<!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
 	<mvc:annotation-driven />
 
 	<!-- 访问静态资源 -->
@@ -26,5 +26,24 @@
 		<property name="prefix" value="/WEB-INF/view/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	<import resource="spring-shiro.xml"></import>
+	
+	<!-- 未认证或未授权时跳转必须在springmvc里面配，spring-shiro里的shirofilter配不生效 -->
+    <bean   class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--表示捕获的异常 -->
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    <!--捕获该异常时跳转的路径 -->
+                    /403
+                </prop>
+                <!--表示捕获的异常 -->
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">
+                    <!--捕获该异常时跳转的路径 -->
+                    /403
+                </prop>
+            </props>
+        </property>
+    </bean>
 	
 </beans>

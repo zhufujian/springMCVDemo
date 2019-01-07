@@ -5,10 +5,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.study.demo</groupId>
-  <artifactId>springMVCDemo</artifactId>
+  <artifactId>springMVCShiroDemo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>springMVCDemo</name>
+  <name>springMVCShiroDemo</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,9 +39,32 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             <artifactId>spring-webmvc</artifactId>
             <version>4.1.2.RELEASE</version>
         </dependency>
+        <!-- shiro -->
+	    <dependency>
+	      <groupId>org.apache.shiro</groupId>
+	      <artifactId>shiro-core</artifactId>
+	      <version>1.4.0</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.shiro</groupId>
+	      <artifactId>shiro-spring</artifactId>
+	      <version>1.4.0</version>
+	    </dependency> 
+	    
+	    <!--日志工具包-->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.6.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.1</version>
+    </dependency>
   </dependencies>
 
   <build>
-    <finalName>springMVCDemo</finalName>
+    <finalName>springMVCShiroDemo</finalName>
   </build>
 </project>

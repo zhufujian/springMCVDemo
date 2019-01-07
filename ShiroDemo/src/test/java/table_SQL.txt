@@ -1,0 +1,24 @@
+#创建[SHIRO_USER]表SQL
+create table `SHIRO_USER` (
+	`UID` bigint (20),
+	`USERNAME` varchar (60),
+	`EMAIL` varchar (384),
+	`PASSWORD` varchar (96),
+	`CREATE_TIME` datetime ,
+	`LAST_LOGIN_TIME` datetime ,
+	`STATUS` bigint (1)
+); 
+#创建[SHIRO_USER_ROLE]表SQL
+create table `SHIRO_USER_ROLE` (
+	`URID` bigint (20),
+	`ROLE_NAME` varchar (96),
+	`ROLE_TYPE` varchar (30),
+	`USERNAME` varchar (60)
+); 
+#创建[SHIRO_ROLE_PERMISSION]表SQL
+create table `SHIRO_ROLE_PERMISSION` (
+	`SRPID` bigint (20),
+	`URL` varchar (768),
+	`PERM_NAME` varchar (192),
+	`ROLE_NAME` varchar (96)
+); 

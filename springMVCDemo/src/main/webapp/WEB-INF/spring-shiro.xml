@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--开启shiro的注解-->
+    <bean id="advisorAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <property name="proxyTargetClass" value="true"></property>
+    </bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>
+  
+    <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的Realm-->
+    <bean id="customRealm" class="com.springdemo.controller.CustomRealm"></bean>
+    
+    	<!-- 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="customRealm"/>
+	</bean>
+
+    <!--配置ShiroFilter-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+   		 <!-- Shiro的核心安全接口,这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"></property>
+        <!--登入页面-->
+        <property name="loginUrl" value="/login.jsp"></property>
+        <!--登入成功页面-->
+        <property name="successUrl" value="/index.jsp"/>
+        <property name="filters">
+            <map>
+                <!--退出过滤器-->
+                <entry key="logout" value-ref="logoutFilter" />
+            </map>
+        </property>
+        <!--URL的拦截-->
+        <property name="filterChainDefinitions" >
+            <value>
+                /default/login=anon <!-- 任何人都可以访问，匿名 -->
+				/main**=authc 	<!-- 需要登录 -->
+				/user/info**=authc <!-- 需要登录 -->
+				/admin/listUser**=authc,perms[admin:manage]<!-- 已经登录并且还要有admin:manage权限才可以访问 -->
+            </value>
+        </property>
+
+    </bean>
+    <!--自定义退出LogoutFilter-->
+  <!--   <bean id="logoutFilter" class="com.test.filter.SystemLogoutFilter">
+        <property name="redirectUrl" value="/login"/>
+    </bean> -->
+</beans>
